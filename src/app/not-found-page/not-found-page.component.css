@@ -1,0 +1,14 @@
+.custom-color {
+  color: oklch(0.45 0.15 240);
+}
+
+.custom-btn {
+  background-color: oklch(0.45 0.15 240);
+  color: white;
+  border: none;
+}
+
+.custom-btn:hover {
+  background-color: oklch(0.45 0.15 240 / 0.85); /* slightly lighter on hover */
+  color: white;
+}

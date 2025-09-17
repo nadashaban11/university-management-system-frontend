@@ -1,0 +1,11 @@
+.btn-outline-primary {
+  color: oklch(0.45 0.15 240);
+  border-color: oklch(0.45 0.15 240);
+}
+
+.btn-outline-primary:hover {
+  background-color: oklch(0.45 0.15 240);
+  color: #fff; /* text turns white when hovered */
+}
+
+
