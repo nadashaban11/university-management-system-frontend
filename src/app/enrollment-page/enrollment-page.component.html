@@ -1,0 +1,91 @@
+<div class="container mt-4">
+  <h2 class="mb-3">Enrollment Management</h2>
+  <p class="text-muted">Review and manage student enrollment requests.</p>
+<div *ngIf="enrollments.length === 0">
+  No enrollments found.
+</div>
+
+
+
+   <!--Cards Row -->
+  <div class="row mb-4">
+    <div class="col-md-3" *ngFor="let card of [
+      {title: 'WAITLISTED', count: pendingCount},
+      {title: 'ENROLLED', count: approvedCount},
+      {title: 'DROPPED', count: rejectedCount},
+      {title: 'Total Requests', count: totalCount}
+    ]">
+      <div class="card text-center shadow-sm">
+        <div class="card-body">
+          <h3>{{card.count}}</h3>
+          <p class="mb-0 text-muted">{{card.title}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+   <!--Dropdown (filter placeholder) 
+  <div class="d-flex justify-content-end mb-3">
+    <div ngbDropdown>
+      <button class="btn btn-outline-secondary dropdown-toggle" ngbDropdownToggle>
+        All Statuses
+      </button>
+      <div ngbDropdownMenu>
+        <button class="dropdown-item">All</button>
+        <button class="dropdown-item">ENROLLED</button>
+        <button class="dropdown-item">WAITLISTED</button>
+        <button class="dropdown-item">DROPPED</button>
+      </div>
+    </div>
+  </div>-->
+
+   <!--Table--> 
+  <div class="table-responsive">
+    <table class="table table-hover align-middle">
+      <thead class="table-light">
+        <tr>
+          <th>Student</th>
+          <th>Course</th>
+          <th>Status</th>
+          <th>Grade</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let enrollment of enrollments">
+          <td>{{ enrollment.student?.name }}</td>
+          <td>{{ enrollment.course?.title }}</td>
+          <td>{{ enrollment.status }}</td>
+          <td>{{ enrollment.grade || '-' }}</td>
+          <td>
+            <span 
+              class="badge"
+              [ngClass]="{
+                'badge bg-success': enrollment.status === 'ENROLLED',
+                'badge bg-warning text-dark': enrollment.status === 'WAITLISTED',
+                'badge bg-danger': enrollment.status === 'DROPPED'
+              }">
+              {{ enrollment.status }}
+            </span>
+          </td>
+          <td>{{ enrollment.grade || '-' }}</td>
+          <td>
+            <button 
+              *ngIf="enrollment.status === 'WAITLISTED'" 
+              class="btn btn-sm btn-success me-1" 
+              (click)="approve(enrollment)">
+              ✓
+            </button>
+            <button 
+              *ngIf="enrollment.status === 'WAITLISTED'" 
+              class="btn btn-sm btn-danger me-1" 
+              (click)="reject(enrollment)">
+              ✕
+            </button>
+            <button class="btn btn-sm btn-outline-secondary">👁</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div> 
