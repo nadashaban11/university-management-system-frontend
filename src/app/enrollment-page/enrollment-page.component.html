@@ -6,7 +6,6 @@
 </div>
 
 
-
    <!--Cards Row -->
   <div class="row mb-4">
     <div class="col-md-3" *ngFor="let card of [
@@ -24,21 +23,6 @@
     </div>
   </div>
 
-   <!--Dropdown (filter placeholder) 
-  <div class="d-flex justify-content-end mb-3">
-    <div ngbDropdown>
-      <button class="btn btn-outline-secondary dropdown-toggle" ngbDropdownToggle>
-        All Statuses
-      </button>
-      <div ngbDropdownMenu>
-        <button class="dropdown-item">All</button>
-        <button class="dropdown-item">ENROLLED</button>
-        <button class="dropdown-item">WAITLISTED</button>
-        <button class="dropdown-item">DROPPED</button>
-      </div>
-    </div>
-  </div>-->
-
    <!--Table--> 
   <div class="table-responsive">
     <table class="table table-hover align-middle">
@@ -48,7 +32,6 @@
           <th>Course</th>
           <th>Status</th>
           <th>Grade</th>
-          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -57,33 +40,6 @@
           <td>{{ enrollment.course?.title }}</td>
           <td>{{ enrollment.status }}</td>
           <td>{{ enrollment.grade || '-' }}</td>
-          <td>
-            <span 
-              class="badge"
-              [ngClass]="{
-                'badge bg-success': enrollment.status === 'ENROLLED',
-                'badge bg-warning text-dark': enrollment.status === 'WAITLISTED',
-                'badge bg-danger': enrollment.status === 'DROPPED'
-              }">
-              {{ enrollment.status }}
-            </span>
-          </td>
-          <td>{{ enrollment.grade || '-' }}</td>
-          <td>
-            <button 
-              *ngIf="enrollment.status === 'WAITLISTED'" 
-              class="btn btn-sm btn-success me-1" 
-              (click)="approve(enrollment)">
-              ✓
-            </button>
-            <button 
-              *ngIf="enrollment.status === 'WAITLISTED'" 
-              class="btn btn-sm btn-danger me-1" 
-              (click)="reject(enrollment)">
-              ✕
-            </button>
-            <button class="btn btn-sm btn-outline-secondary">👁</button>
-          </td>
         </tr>
       </tbody>
     </table>
