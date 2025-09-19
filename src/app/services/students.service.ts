@@ -29,4 +29,12 @@ export class StudentsService {
     return this.http.post("http://localhost:8080/api/students", studentData);
   }
 
+  searchStudents(query: string) {
+  return this.http.get<Student[]>(
+    `http://localhost:8080/api/students/searchStudent?name=${query}&studentId=${query}`
+  );
+}
+
+
+
 }

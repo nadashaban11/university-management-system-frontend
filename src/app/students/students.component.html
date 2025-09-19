@@ -2,11 +2,14 @@
   <h4 class="fw-bold mb-3">Students</h4>
   <p class="text-muted">Manage student records and information.</p>
 
-  <!-- Search & Add -->
-  <div class="d-flex justify-content-between align-items-center mb-3">
-    <input type="text" class="form-control w-50" placeholder="Search students...">
-    <button class="btn btn-primary" routerLink="/add-student">Add Student</button>
-  </div>
+<!-- Search & Add -->
+<div class="d-flex justify-content-between align-items-center mb-3">
+<input type="text"
+       class="form-control w-50"
+       placeholder="Search students..."
+       (input)="search($event)">
+  <button class="btn btn-primary" routerLink="/add-student">Add Student</button>
+</div>
 
   <!-- Students Table -->
   <table class="table table-hover align-middle">
