@@ -1,0 +1,104 @@
+<div class="card shadow-sm p-4">
+    <h3 class="fw-bold mb-2">Add Student</h3>
+
+    <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+        <!-- Student ID -->
+        <div class="mb-3">
+            <label class="form-label">Student ID</label>
+            <input type="text" class="form-control" formControlName="studentId" />
+
+            @if(formControls['studentId'].invalid && (formControls['studentId'].touched || submitted)){
+            @if(formControls['studentId'].hasError('required')){
+            <div id="nameHelp" class="form-text text-danger">Student id is required</div>
+            }@else if(formControls['studentId'].hasError('pattern')){
+            <div id="nameHelp" class="form-text text-danger">Student id must be 8 digits</div>
+            }
+            }
+
+        </div>
+
+        <!-- Name -->
+        <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input type="text" class="form-control" formControlName="name" />
+
+            @if(formControls['name'].invalid && (formControls['name'].touched || submitted)){
+            @if(formControls['name'].hasError('required')){
+            <div id="nameHelp" class="form-text text-danger">Name is required</div>
+            }@else if(formControls['name'].hasError('minlength')){
+            <div id="nameHelp" class="form-text text-danger">Name can't be less than 10 characters</div>
+            }
+            }
+
+        </div>
+
+        <!-- Email -->
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" formControlName="email" />
+
+            @if(formControls['email'].invalid && (formControls['email'].touched || submitted)){
+            @if(formControls['email'].hasError('required')){
+            <div id="nameHelp" class="form-text text-danger">Email is required</div>
+            }@else if(formControls['email'].hasError('pattern')){
+            <div id="nameHelp" class="form-text text-danger">Invalid email format</div>
+            }
+            }
+
+        </div>
+
+        <!-- Phone -->
+        <div class="mb-3">
+            <label class="form-label">Phone</label>
+            <input type="text" class="form-control" formControlName="phone" />
+
+            @if(formControls['phone'].invalid && (formControls['phone'].touched || submitted)){
+            @if(formControls['phone'].hasError('pattern')){
+            <div id="nameHelp" class="form-text text-danger">Phone number must be 11 digits</div>
+            }
+            }
+
+        </div>
+
+        <!-- Year & Department -->
+        <div class="row mb-3">
+            <div class="col">
+                <label class="form-label">Academic Year</label>
+                <select class="form-select" formControlName="year">
+                    <option value="1">Year 1</option>
+                    <option value="2">Year 2</option>
+                    <option value="3">Year 3</option>
+                    <option value="4">Year 4</option>
+                </select>
+
+                @if(formControls['year'].invalid && (formControls['year'].touched || submitted)){
+                @if(formControls['year'].hasError('required')){
+                <div id="nameHelp" class="form-text text-danger">year is required</div>
+                }
+                }
+
+            </div>
+            <div class="col">
+                <label class="form-label">Department</label>
+                <select class="form-select" formControlName="department">
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Information Systems">Information Systems</option>
+                    <option value="Artificial Intelligence ">Artificial Intelligence</option>
+                </select>
+
+                @if(formControls['department'].invalid && (formControls['department'].touched || submitted)){
+                @if(formControls['department'].hasError('required')){
+                <div id="nameHelp" class="form-text text-danger">Department is required</div>
+                }
+                }
+
+            </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="d-flex justify-content-end">
+            <button type="button" class="btn btn-outline-secondary me-2" routerLink="/students">Cancel</button>
+            <button type="submit" class="btn btn-primary">Add Student</button>
+        </div>
+    </form>
+</div>
