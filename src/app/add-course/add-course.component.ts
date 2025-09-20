@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { CourseService } from '../services/course.service';
-import  {Router} from '@angular/router';
+import  {Router, RouterLink} from '@angular/router';
 import { Course } from '../types/course';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-add-course',
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink],
   templateUrl: './add-course.component.html',
   styleUrl: './add-course.component.css'
 })

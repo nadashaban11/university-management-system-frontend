@@ -1,0 +1,26 @@
+/* Custom filled button */
+.btn-custom {
+  background-color: oklch(0.45 0.15 240);
+  color: #fff;
+  border: 1px solid oklch(0.45 0.15 240);
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-custom:hover {
+  background-color: oklch(0.55 0.15 240); /* lighter on hover */
+  border-color: oklch(0.55 0.15 240);
+  color: #fff;
+}
+
+/* Custom outlined button */
+.btn-outline-custom {
+  background-color: transparent;
+  border: 1px solid oklch(0.45 0.15 240);
+  color: oklch(0.45 0.15 240);
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-outline-custom:hover {
+  background-color: oklch(0.45 0.15 240);
+  color: #fff;
+}
