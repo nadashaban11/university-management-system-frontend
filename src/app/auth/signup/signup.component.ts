@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service'; 
 
 @Component({
   selector: 'app-signup',
@@ -10,13 +11,17 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
-
 export class SignupComponent {
 
   signUpForm: FormGroup;
   submitted: boolean = false;
+  errorMessage: string = '';
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
     this.signUpForm = this.fb.group({
       email: ['', [
         Validators.required,
@@ -38,18 +43,20 @@ export class SignupComponent {
     this.submitted = true;
     if (this.signUpForm.invalid) return;
 
-    const formData = this.signUpForm.value;
+    this.authService.signUp(this.signUpForm.value).subscribe({
+      next: (res) => {
+        console.log('Signup success:', res);
 
-    this.http.post('http://localhost:8000/api/auth/register', formData)
-      .subscribe({
-        next: (res: any) => {
-          console.log('User registered:', res);
-          alert('Registration successful!');
-        },
-        error: (err) => {
-          console.error('Error:', err);
-          alert('Something went wrong during registration.');
+        if (res.token) {
+          this.authService.saveToken(res.token);
         }
-      });
+
+        this.router.navigate(['/student-dashboard']);
+      },
+      error: (err) => {
+        console.error('Signup failed:', err);
+        this.errorMessage = 'Signup failed. Please try again.';
+      }
+    });
   }
 }

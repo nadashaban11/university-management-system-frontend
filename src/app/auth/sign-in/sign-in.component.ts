@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { NgIf } from '@angular/common'; 
+import { NgIf } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -12,10 +14,15 @@ import { NgIf } from '@angular/common';
 export class SignInComponent {
   signInForm: FormGroup;
   submitted = false;
+  errorMessage = '';
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
     this.signInForm = this.fb.group({
-      email: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)]],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
   }
@@ -28,6 +35,20 @@ export class SignInComponent {
     this.submitted = true;
     if (this.signInForm.invalid) return;
 
-    console.log('Form submitted:', this.signInForm.value);
+    this.authService.signIn(this.signInForm.value).subscribe({
+  next: (res) => {
+    console.log('Login success:', res);
+
+    if (res.token) {
+      this.authService.saveToken(res.token);
+    }
+
+    this.router.navigate(['/admin-dashboard']);
+  },
+  error: (err) => {
+    console.error('Login failed:', err);
+    this.errorMessage = 'Invalid email or password';
+  }
+});
   }
 }

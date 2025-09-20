@@ -20,6 +20,16 @@ export const routes: Routes = [
         title: 'Home Page'
     },
     {
+        path: 'signup',
+        component: SignupComponent,
+        title: 'Sign Up'
+    },
+    {
+        path: 'signin',
+        component: SignInComponent,
+        title: 'Sign In'
+    },
+    {
         path: 'admin-dashboard',
         component: AdminDashboardComponent,
         title: 'Admin Dashboard',
