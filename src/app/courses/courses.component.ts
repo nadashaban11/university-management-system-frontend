@@ -43,12 +43,16 @@ export class CoursesComponent {
   }
   
   showAlert: boolean = false;
+  
+  
 
   deleteCourse(course:Course):void{
     this.courseService.deleteCourse(course._id!).subscribe(() => {
       this.courses = this.courses.filter(c => c._id !== course._id);
 
-      this.showAlert = true;
+  setTimeout(()=>{
+        this.showAlert = true;
+      },3000)
     });
 }
 
