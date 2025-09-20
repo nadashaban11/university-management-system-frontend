@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-admin-dashboard',
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive,RouterModule],
   templateUrl: './admin-dashboard.component.html',
   styleUrl: './admin-dashboard.component.css'
 })

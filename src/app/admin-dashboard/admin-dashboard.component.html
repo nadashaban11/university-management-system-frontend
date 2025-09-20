@@ -74,7 +74,8 @@
           <button class="btn btn-outline-primary w-100 mb-2" routerLink="/add-student">
             <i class="bi bi-plus-lg me-2"></i>
              Add Student</button>
-          <button class="btn btn-outline-primary w-100 mb-2" routerLink="/courses"><i class="bi bi-book me-2"></i> Create Course</button>
+          <button class="btn btn-outline-primary w-100 mb-2" [routerLink]="['/add-course']">
+            <i class="bi bi-book me-2"></i> Create Course</button>
           <button class="btn btn-outline-primary w-100" routerLink="/enrollments"><i class="bi bi-clipboard2-check me-2"></i>Enrollments</button>
       </div>
     </div>
