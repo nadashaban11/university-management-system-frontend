@@ -1,0 +1,49 @@
+<div class="card shadow-sm p-3">
+<div class="container mt-4">
+  <h2 class="mb-3">Enrollment Management</h2>
+  <p class="text-muted">Review and manage student enrollment requests.</p>
+<div *ngIf="enrollments.length === 0">
+  No enrollments found.
+</div>
+
+
+   <!--Cards Row -->
+  <div class="row mb-4">
+    <div class="col-md-3" *ngFor="let card of [
+      {title: 'WAITLISTED', count: pendingCount},
+      {title: 'ENROLLED', count: approvedCount},
+      {title: 'DROPPED', count: rejectedCount},
+      {title: 'Total Requests', count: totalCount}
+    ]">
+      <div class="card text-center shadow-sm">
+        <div class="card-body">
+          <h3>{{card.count}}</h3>
+          <p class="mb-0 text-muted">{{card.title}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+   <!--Table--> 
+  <div class="table-responsive">
+    <table class="table table-hover align-middle">
+      <thead class="table-light">
+        <tr>
+          <th>Student</th>
+          <th>Course</th>
+          <th>Status</th>
+          <th>Grade</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let enrollment of enrollments">
+          <td>{{ enrollment.student?.name }}</td>
+          <td>{{ enrollment.course?.title }}</td>
+          <td>{{ enrollment.status }}</td>
+          <td>{{ enrollment.grade || '-' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div> 
+</div>

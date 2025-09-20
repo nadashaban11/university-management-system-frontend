@@ -3,10 +3,6 @@
     <!-- Topbar -->
     <div class="d-flex justify-content-between align-items-center mb-4">
       <h2 class="fw-bold" style="color: oklch(0.15 0.02 240);">Dashboard</h2>
-      <div class="d-flex align-items-center">
-        <span class="me-2 fw-semibold">Malak Sherif</span>
-        <span class="badge bg-danger">Administrator</span>
-      </div>
     </div>
 
     <!-- Cards row -->
@@ -14,21 +10,21 @@
       <div class="col-md-3">
         <div class="card shadow-sm p-3">
           <h6>Total Students</h6>
-          <h3 style="color: oklch(0.15 0.02 240);">2</h3>
+          <h3 style="color: oklch(0.15 0.02 240);">{{numOFStudents}}</h3>
           <small class="text-muted">Active students</small>
         </div>
       </div>
       <div class="col-md-3">
         <div class="card shadow-sm p-3">
           <h6>Total Courses</h6>
-          <h3 style="color: oklch(0.15 0.02 240);">3</h3>
+          <h3 style="color: oklch(0.15 0.02 240);">{{numOfCourses}}</h3>
           <small class="text-muted">Available courses</small>
         </div>
       </div>
       <div class="col-md-3">
         <div class="card shadow-sm p-3">
           <h6>Total Enrollments</h6>
-          <h3 style="color: oklch(0.15 0.02 240);">2</h3>
+          <h3 style="color: oklch(0.15 0.02 240);">{{numOfEnrollments}}</h3>
           <small class="text-muted">Approved enrollments</small>
         </div>
       </div>
@@ -71,11 +67,12 @@
       <div class="col-md-6">
         <div class="card shadow-sm p-3">
           <h6 class="fw-bold">Quick Actions</h6>
-          <button class="btn btn-outline-primary w-100 mb-2">
+          <button class="btn btn-outline-primary w-100 mb-2" routerLink="/add-student">
             <i class="bi bi-plus-lg me-2"></i>
              Add Student</button>
-          <button class="btn btn-outline-primary w-100 mb-2"><i class="bi bi-book me-2"></i> Create Course</button>
-          <button class="btn btn-outline-primary w-100"><i class="bi bi-clipboard2-check me-2"></i>Enrollments</button>
+          <button class="btn btn-outline-primary w-100 mb-2" [routerLink]="['/add-course']">
+            <i class="bi bi-book me-2"></i> Create Course</button>
+          <button class="btn btn-outline-primary w-100" routerLink="/enrollments"><i class="bi bi-clipboard2-check me-2"></i>Enrollments</button>
       </div>
     </div>
   </div>

@@ -1,0 +1,52 @@
+<div class="alert alert-success alert-dismissible fade" [class.show]="showAlert" role="alert">Course deleted
+	successfully!
+	<button type="button" class="btn-close" (click)="showAlert = false"></button>
+</div>
+
+<div class="card shadow-sm p-3">
+	<h4 class="fw-bold mb-3">Courses</h4>
+	<p class="text-muted">Manage courses records and information.</p>
+
+
+	<div class="mt-4">
+		<form>
+			<div class="d-flex justify-content-between align-items-center mb-3">
+				<input type="text" class="form-control w-50" placeholder="Search Courses..." fromConrolName="filter">
+				<button class="btn btn-primary" routerLink="/add-course" >Add Course</button>
+			</div>
+		</form>
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">CourseName</th>
+					<th scope="col">Department </th>
+					<th scope="col">Instructor</th>
+					<th scope="col">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				@for (course of filteredCourses; track course.title; let i = $index) {
+				<tr>
+					<th scope="row">{{ i + 1 }}</th>
+					<td>
+						<ngb-highlight [result]="course.title" [term]="filter.value" />
+					</td>
+					<td><ngb-highlight [result]="course.department" [term]="filter.value" /></td>
+					<td><ngb-highlight [result]="course.instructor" [term]="filter.value" /></td>
+					<td>
+						<button class="btn btn-sm btn-outline-danger" (click)="deleteCourse(course)">
+							<i class="bi bi-trash"></i> Delete
+						</button>
+					</td>
+				</tr>
+				} @empty {
+				<tr>
+					<td colspan="5" style="text-align: center">No courses found</td>
+				</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+</div>

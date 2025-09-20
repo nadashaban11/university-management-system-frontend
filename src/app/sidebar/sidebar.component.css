@@ -1,19 +1,25 @@
+/* Normal sidebar links (black text, no background) */
 .sidebar .nav-link {
-  color: oklch(0.15 0.02 240);
+  color: #000; /* black by default */
   padding: 10px 15px;
   border-radius: 8px;
   text-decoration: none;
   display: flex;
   align-items: center;
+  transition: all 0.2s ease-in-out;
+  font-weight: 500;
 }
 
+/* Hover effect (blue background + white text) */
 .sidebar .nav-link:hover {
-  background-color: oklch(60.315% 0.16172 248.547); /* soft green hover */
-  color: #000;
+  background-color: oklch(0.45 0.15 240); /* your custom blue */
+  color: #fff;
 }
 
+/* Active link (same as hover, but persistent) */
 .nav-link.active {
-  background-color: #0d6efd; /* Bootstrap primary blue */
+  background-color: oklch(0.45 0.15 240); 
+  color: #fff !important;
   border-radius: 8px;
   font-weight: bold;
 }
