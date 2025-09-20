@@ -10,6 +10,8 @@ import { EditStudentComponent } from './students/edit-student/edit-student.compo
 import { AppComponent } from './app.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { authGuard } from './guards/auth.guard';
+import { SignupComponent } from './auth/signup/signup.component';
+import { SignInComponent } from './auth/sign-in/sign-in.component';
 
 export const routes: Routes = [
     {
