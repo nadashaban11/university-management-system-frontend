@@ -1,0 +1,33 @@
+<h2>Add Course</h2>
+<form (ngSubmit)="onSave()">
+  
+<div class="mb-3">
+    <label>Course Name</label>
+    <input type="text"
+     class="form-control"
+     name="title" 
+    [(ngModel)]="course.title"
+    placeholder="Course Name" 
+    required>
+</div>
+<div class="mb-3">
+    <label>Department</label>   
+    <input type="text"
+     class="form-control" 
+     name="department" 
+     [(ngModel)]="course.department" 
+     placeholder="Department"
+     required>
+</div>
+<div class="mb-3">
+    <label>Instructor</label>   
+    <input type="text" 
+    class="form-control" 
+    name="instructor"
+    placeholder="Instructor"
+    [(ngModel)]="course.instructor" 
+    required>
+</div>
+<button type="submit" class="btn btn-success">Save</button>
+
+</form>

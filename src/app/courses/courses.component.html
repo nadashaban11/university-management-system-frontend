@@ -1,0 +1,54 @@
+<div  class="alert alert-success alert-dismissible fade"[class.show]="showAlert" role="alert">Course deleted successfully! 
+	<button type="button" class="btn-close" (click)="showAlert = false"></button>
+</div>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+<h2>Courses</h2>
+<button class="btn btn-primary mx-3" [routerLink]= "['/add-course']">Add Course</button>
+</div>
+
+
+<div class="mt-4">
+	<div class="container">
+		<h4>Course Available</h4>
+		<form>
+			<div class="mb-3 row">
+				<label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Full text search:</label>
+				<div class="col-xs-3 col-sm-auto">
+					<input id="table-filtering-search" class="form-control" type="text" [formControl]= "filter" />
+				</div>
+			</div>
+		</form>
+		
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">CourseName</th>
+					<th scope="col">Department                                                                                                                                                                                                                                                                                                                                          </th>
+					<th scope="col">Instructor</th>
+					<th scope="col">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				@for (course of filteredCourses; track course.title; let i = $index) {
+					<tr>
+						<th scope="row">{{ i + 1 }}</th>
+						<td>
+							<ngb-highlight [result]="course.title" [term]="filter.value" />
+						</td>
+						<td><ngb-highlight [result]="course.department" [term]="filter.value" /></td>
+						<td><ngb-highlight [result]="course.instructor" [term]="filter.value" /></td>
+						<td>
+							<button class="btn btn-danger btn-sm" (click)="deleteCourse(course)">Delete</button>
+						</td>
+					</tr>
+				} @empty {
+					<tr>
+						<td colspan="5" style="text-align: center">No courses found</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+</div>
